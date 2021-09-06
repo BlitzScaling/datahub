@@ -57,3 +57,33 @@ export const getFixedLookbackWindow = (windowSize: TimeWindowSize): TimeWindow =
         endTime,
     };
 };
+
+export const getRelativeTime = (secondsFromNow: number): string => {
+    const msPerMinute = 60 * 1000;
+    const msPerHour = msPerMinute * 60;
+    const msPerDay = msPerHour * 24;
+    const msPerMonth = msPerDay * 30;
+    const msPerYear = msPerDay * 365;
+
+    if (secondsFromNow < msPerMinute) {
+        return `${Math.round(secondsFromNow / 1000)} seconds ago`;
+    }
+
+    if (secondsFromNow < msPerHour) {
+        return `${Math.round(secondsFromNow / msPerMinute)} minutes ago`;
+    }
+
+    if (secondsFromNow < msPerDay) {
+        return `${Math.round(secondsFromNow / msPerHour)} hours ago`;
+    }
+
+    if (secondsFromNow < msPerMonth) {
+        return `'approximately ${Math.round(secondsFromNow / msPerDay)} days ago'`;
+    }
+
+    if (secondsFromNow < msPerYear) {
+        return `'approximately ${Math.round(secondsFromNow / msPerMonth)} months ago'`;
+    }
+
+    return `'approximately ${Math.round(secondsFromNow / msPerYear)} years ago'`;
+};

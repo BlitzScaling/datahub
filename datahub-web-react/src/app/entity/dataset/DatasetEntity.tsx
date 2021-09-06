@@ -18,6 +18,7 @@ import QueriesTab from '../shared/tabs/Dataset/Queries/QueriesTab';
 import { SidebarAboutSection } from '../shared/containers/profile/sidebar/SidebarAboutSection';
 import { SidebarOwnerSection } from '../shared/containers/profile/sidebar/Ownership/SidebarOwnerSection';
 import { SidebarTagsSection } from '../shared/containers/profile/sidebar/SidebarTagsSection';
+import { SidebarOverviewSection } from '../shared/containers/profile/sidebar/SidebarOverviewSection';
 import { SidebarStatsSection } from '../shared/containers/profile/sidebar/Dataset/StatsSidebarSection';
 import StatsTab from '../shared/tabs/Dataset/Stats/StatsTab';
 import { LineageTab } from '../shared/tabs/Lineage/LineageTab';
@@ -114,6 +115,9 @@ export class DatasetEntity implements Entity<Dataset> {
             sidebarSections={[
                 {
                     component: SidebarAboutSection,
+                },
+                {
+                    component: SidebarOverviewSection,
                 },
                 {
                     component: SidebarStatsSection,

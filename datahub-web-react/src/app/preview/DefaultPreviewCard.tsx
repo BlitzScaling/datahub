@@ -1,4 +1,4 @@
-import { Image, Typography } from 'antd';
+import { Image, Statistic, Typography } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -8,6 +8,7 @@ import AvatarsGroup from '../shared/avatar/AvatarsGroup';
 import TagTermGroup from '../shared/tags/TagTermGroup';
 import { ANTD_GRAY } from '../entity/shared/constants';
 import NoMarkdownViewer from '../entity/shared/components/styled/StripMarkdownText';
+import { getRelativeTime } from '../shared/time/timeUtils';
 
 interface Props {
     name: string;
@@ -43,6 +44,10 @@ const TitleContainer = styled.div`
     margin-bottom: 8px;
 `;
 
+const ScoreContainer = styled.div`
+    margin-bottom: 8px;
+`;
+
 const PreviewImage = styled(Image)`
     max-height: 18px;
     width: auto;
@@ -61,6 +66,13 @@ const EntityTitle = styled(Typography.Text)`
 `;
 
 const PlatformText = styled(Typography.Text)`
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 700;
+    color: ${ANTD_GRAY[7]};
+`;
+
+const ScoreText = styled(Typography.Text)`
     font-size: 12px;
     line-height: 20px;
     font-weight: 700;
@@ -109,6 +121,9 @@ export default function DefaultPreviewCard({
 }: Props) {
     const entityRegistry = useEntityRegistry();
 
+    const qualityScore = Math.floor(Math.random() * (99 - 85 + 1) + 85);
+    const freshness = getRelativeTime(Math.floor(Math.random() * (86400 * 2 - 1 + 1) + 1));
+
     return (
         <PreviewContainer data-testid={dataTestID}>
             <div>
@@ -138,6 +153,14 @@ export default function DefaultPreviewCard({
             </div>
             <AvatarContainer>
                 <AvatarsGroup owners={owners} entityRegistry={entityRegistry} maxCount={4} />
+                <ScoreContainer>
+                    {qualityScore > 90 ? (
+                        <Statistic value={qualityScore} suffix=" / 100" valueStyle={{ color: '#3f8600' }} />
+                    ) : (
+                        <Statistic value={qualityScore} suffix=" / 100" valueStyle={{ color: '#cf1322' }} />
+                    )}
+                    <ScoreText>Freshness: {freshness}</ScoreText>
+                </ScoreContainer>
             </AvatarContainer>
         </PreviewContainer>
     );
