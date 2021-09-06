@@ -13,6 +13,7 @@ import { ExtendedSchemaFields } from '../../../../dataset/profile/schema/utils/t
 import useDescriptionRenderer from './utils/useDescriptionRenderer';
 import useUsageStatsRenderer from './utils/useUsageStatsRenderer';
 import useTagsAndTermsRenderer from './utils/useTagsAndTermsRenderer';
+import useStatisticsRenderer from './utils/useStatisticsRenderer';
 import ExpandIcon from './components/ExpandIcon';
 import { StyledTable } from '../../../components/styled/StyledTable';
 
@@ -69,6 +70,7 @@ export default function SchemaTable({
         tagHoveredIndex,
         setTagHoveredIndex,
     );
+    const statisticsRender = useStatisticsRenderer();
 
     const tagAndTermColumn = {
         width: 150,
@@ -105,7 +107,20 @@ export default function SchemaTable({
         width: 300,
     };
 
-    let allColumns: ColumnsType<ExtendedSchemaFields> = [...defaultColumns, descriptionColumn, tagAndTermColumn];
+    const statisticsColumn = {
+        title: 'Statistics',
+        dataIndex: 'statistics',
+        key: 'statistics',
+        render: statisticsRender,
+        width: 200,
+    };
+
+    let allColumns: ColumnsType<ExtendedSchemaFields> = [
+        ...defaultColumns,
+        descriptionColumn,
+        tagAndTermColumn,
+        statisticsColumn,
+    ];
 
     if (hasUsageStats) {
         allColumns = [...allColumns, usageColumn];
