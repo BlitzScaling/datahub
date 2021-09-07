@@ -9,6 +9,7 @@ import TagTermGroup from '../shared/tags/TagTermGroup';
 import { ANTD_GRAY } from '../entity/shared/constants';
 import NoMarkdownViewer from '../entity/shared/components/styled/StripMarkdownText';
 import { getRelativeTime } from '../shared/time/timeUtils';
+import { useEntityData } from '../entity/shared/EntityContext';
 
 interface Props {
     name: string;
@@ -122,7 +123,7 @@ export default function DefaultPreviewCard({
     const entityRegistry = useEntityRegistry();
 
     const qualityScore = Math.floor(Math.random() * (99 - 85 + 1) + 85);
-    const freshness = getRelativeTime(Math.floor(Math.random() * (86400 * 2 - 1 + 1) + 1));
+    const freshness = getRelativeTime(Math.floor(Math.random() * (3600 * 12 - 60 * 5 + 1) + 60 * 5));
 
     return (
         <PreviewContainer data-testid={dataTestID}>

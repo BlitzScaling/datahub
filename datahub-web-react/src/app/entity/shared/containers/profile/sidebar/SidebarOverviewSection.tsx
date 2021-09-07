@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { SidebarHeader } from './SidebarHeader';
+import { useEntityData } from '../../../EntityContext';
 import { getRelativeTime } from '../../../../../shared/time/timeUtils';
 
 const ScoreContainer = styled.div`
@@ -11,7 +12,7 @@ const ScoreContainer = styled.div`
 
 export const SidebarOverviewSection = () => {
     const qualityScore = Math.floor(Math.random() * (99 - 85 + 1) + 85);
-    const freshness = getRelativeTime(Math.floor(Math.random() * (86400 * 2 - 1 + 1) + 1));
+    const freshness = getRelativeTime(Math.floor(Math.random() * (3600 * 12 - 60 * 5 + 1) + 60 * 5));
     return (
         <div>
             <SidebarHeader title="Overview" />
