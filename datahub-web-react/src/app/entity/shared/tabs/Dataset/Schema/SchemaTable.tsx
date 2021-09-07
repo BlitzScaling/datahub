@@ -70,7 +70,7 @@ export default function SchemaTable({
         tagHoveredIndex,
         setTagHoveredIndex,
     );
-    const statisticsRender = useStatisticsRenderer();
+    const statisticsRender = useStatisticsRenderer(Math.floor(Math.random() * (99 - 1 + 1) + 1));
 
     const tagAndTermColumn = {
         width: 150,
@@ -112,7 +112,6 @@ export default function SchemaTable({
         dataIndex: 'statistics',
         key: 'statistics',
         render: statisticsRender,
-        width: 200,
     };
 
     let allColumns: ColumnsType<ExtendedSchemaFields> = [

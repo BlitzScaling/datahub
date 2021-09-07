@@ -9,7 +9,6 @@ import TagTermGroup from '../shared/tags/TagTermGroup';
 import { ANTD_GRAY } from '../entity/shared/constants';
 import NoMarkdownViewer from '../entity/shared/components/styled/StripMarkdownText';
 import { getRelativeTime } from '../shared/time/timeUtils';
-import { useEntityData } from '../entity/shared/EntityContext';
 
 interface Props {
     name: string;

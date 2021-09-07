@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { SidebarHeader } from './SidebarHeader';
-import { useEntityData } from '../../../EntityContext';
 import { getRelativeTime } from '../../../../../shared/time/timeUtils';
 
 const ScoreContainer = styled.div`
